@@ -9,7 +9,6 @@ import java.util.*;
  *
  * @author Jussi Kangasharju
  */
-@SuppressWarnings("unused")
 public class Envelope {
     /* SMTP-sender of the message (in this case, contents of From-header. */
     public String Sender;

@@ -34,7 +34,7 @@ public class Message {
 	/* A close approximation of the required format. Unfortunately
 	   only GMT. */
 	SimpleDateFormat format = 
-	    new SimpleDateFormat("dd MMM yy HH:mm:ss 'GMT'");
+	    new SimpleDateFormat("DDD, dd MMM yy HH:mm:ss 'GMT'");
 	String dateString = format.format(new Date());
 	Headers += "Date: " + dateString + CRLF;
 	Body = text;

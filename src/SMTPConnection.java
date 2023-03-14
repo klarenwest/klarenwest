@@ -38,7 +38,7 @@ public class SMTPConnection {
 	/* SMTP handshake. We need the name of the local machine.
 	   Send the appropriate SMTP handshake command. */
 	String localhost = (InetAddress.getLocalHost()).getCanonicalHostName();
-	sendCommand("helo localhost\n", 250); 
+	sendCommand("helo " + localhost + "\n", 250); 
 	
 	isConnected = true;
     }
@@ -52,11 +52,11 @@ public class SMTPConnection {
 	   sendCommand() to do the dirty work. Do _not_ catch the
 	   exception thrown from sendCommand(). */
 	/* Fill in */
-    	sendCommand("MAIL FROM: <" + ">\n", 250);
-    	toServer.writeBytes(envelope.Sender);
-    	sendCommand("RCPT TO: ", 250);
-    	toServer.writeBytes(envelope.Recipient);
-    	sendCommand("DATA", 354);
+    	sendCommand("MAIL FROM: <" + envelope.Sender + ">\n", 250);
+    	//toServer.writeBytes(envelope.Sender);
+    	sendCommand("RCPT TO: <" + envelope.Recipient + ">\n", 250);
+    	//toServer.writeBytes(envelope.Recipient);
+    	sendCommand("DATA\n", 354);
     	toServer.writeBytes(envelope.Message.Body);
     	sendCommand(CRLF + "." + CRLF, 250);
     	
@@ -81,7 +81,7 @@ public class SMTPConnection {
 	/* Fill in */
 	/* Write command to server and read reply from server. */
 	/* Fill in */
-    	toServer.writeBytes(command + CRLF);
+    	toServer.writeBytes(command + "\n");
     	String reply = fromServer.readLine();
     	String[] reply1 = reply.split(" ");
 	/* Fill in */
